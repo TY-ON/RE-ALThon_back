@@ -1,6 +1,5 @@
 import sqlite3
 
-
 def get_data(board):
     conn = sqlite3.connect("database.db")
     cur = conn.cursor()

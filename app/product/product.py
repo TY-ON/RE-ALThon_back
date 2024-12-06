@@ -1,6 +1,7 @@
-from flask import Flask, render_template, redirect, request, session, make_response
-from flask_restx import Resource, Api, Namespace
-from db.db import insert_user, search_user, delete_user
+from flask import jsonify
+from flask_restx import Resource, Namespace
+from db.product import get_list
+
 
 Product = Namespace('Product')
 
@@ -8,6 +9,10 @@ Product = Namespace('Product')
 @Product.doc(params={
         'category': 'An category'
     })
-class register(Resource):
+class list(Resource):
     def post(self):
-        return {}
+        prod_list = get_list()
+        res = {}
+        for i in prod_list:
+            res[i[0]] = i[1:]
+        return jsonify(res)
