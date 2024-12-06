@@ -1,0 +1,11 @@
+version: '3.5'
+
+services:
+  react:
+    build: ./app
+    networks:
+      cipher_proxy:
+        ipv4_address: 172.30.0.10
+networks:
+  cipher_proxy:
+    external: true
